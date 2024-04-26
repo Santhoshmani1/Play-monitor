@@ -12,6 +12,49 @@ export function ArrowOutward() {
 
 export function PlayIcon({ style }) {
     return (
-        <span className="material-icons font-semibold" style={ style }>play_arrow</span>
+        <span className="material-icons font-semibold" style={style}>play_arrow</span>
     )
 }
+
+export function StarIcon() {
+    return (
+        <span className="material-icons font-semibold">star</span>
+    )
+}
+
+export function Download() {
+    return (
+        <span className="material-icons font-semibold">download</span>
+    )
+}
+
+export function Person() {
+    return (
+        <span className="material-icons font-semibold">person</span>
+    )
+}
+
+export function Shield() {
+    return (
+        <span className="material-icons">shield</span>
+    )
+}
+
+export function Location(){
+    return (
+        <span className="material-icons">location_on</span>
+    )
+}
+
+export function Website() {
+    return (
+        <span className="material-icons">language</span>
+    )
+}
+
+export function Mail() {
+    return (
+        <span className="material-icons">mail</span>
+    )
+}
+
