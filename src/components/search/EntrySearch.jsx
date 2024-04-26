@@ -15,11 +15,10 @@ const EntrySearch = () => {
             </div>
 
             <div className="searchbar flex justify-center items-center">
-                <input type="text" placeholder='Search Apps & Games' className='py-2 w-3/5 lg:w-2/5 px-2 text-2xl  focus:border-white text-gray-700 rounded-xl border-gray-500 border-2 ' onChange={(e) => {
+                <input type="text" placeholder='Search Apps & Games' className='py-2 w-3/5 lg:w-2/5 px-2 lg:text-2xl md:text-xl text-lg  focus:border-white text-gray-700 rounded-xl' onChange={(e) => {
                     setSearchTerm(e.target.value)
                 }} onFocusCapture={() => {
                     setRecommendationsVisibility(true)
-                    console.log(recommendationsVisibility)
                 }}
                     autoFocus={true}
                 />

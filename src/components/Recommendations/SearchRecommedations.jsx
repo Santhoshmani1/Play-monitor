@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SearchBar, ArrowOutward } from '../shared/materialIcons';
+import { Link } from 'react-router-dom';
 
 const SearchRecommendations = ({ searchTerm }) => {
     const [suggestions, setSuggestions] = useState(["whatsapp"]);
@@ -15,7 +16,7 @@ const SearchRecommendations = ({ searchTerm }) => {
                     setSuggestions(data);
                 }
             })
-            .catch(error => console.log(error));
+            .catch(error => console.error(error));
     }, [searchTerm]);
 
     // Add event listener to handle keyboard navigation through the suggestions
@@ -39,7 +40,7 @@ const SearchRecommendations = ({ searchTerm }) => {
     return (
         <div className='flex justify-center items-center flex-col ml-6 mt-1 font-sans'>
             {suggestions.map((suggestion, index) => (
-                    <div key={index} className={`py-2 w-3/5 lg:w-2/5 mr-14 bg-zinc-50 flex text-lg items-center justify-between pr-4 ${index === selectedSuggestionIndex ? 'bg-zinc-400 text-blue-400 font-bold ' : ''}`}>
+                    <Link to={"/apps/"+suggestion} key={index} className={`py-2 w-3/5 lg:w-2/5 mr-14 bg-zinc-50 flex text-lg items-center justify-between pr-4 ${index === selectedSuggestionIndex ? 'bg-zinc-200 text-blue-400 font-bold border-none' : ''}`}>
                         <div className='flex'>
                             <div className='px-2'>
                                 <SearchBar />
@@ -51,7 +52,7 @@ const SearchRecommendations = ({ searchTerm }) => {
                         <div>
                             <ArrowOutward />
                         </div>
-                    </div>
+                    </Link>
             ))}
         </div>
     );
