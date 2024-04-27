@@ -71,6 +71,23 @@ async function runChat(userInput) {
   return response.text();
 }
 
+app.post("/", async (req, res) => {
+  const userInput = req.body.userInput;
+
+  try {
+    const response = await runChat(userInput);
+    if (response) {      
+      console.log(response);
+      res.status(200).send({ data : response });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .send({
+        error: "An error occurred while processing your request.", error,
+      });
+  }
+});
 
 app.listen(3000, () => {
   console.log(`Google AI API is listening on PORT :${port} `);
