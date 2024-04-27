@@ -71,21 +71,24 @@ async function runChat(userInput) {
   return response.text();
 }
 
-app.post("/", async (req, res) => {
+app.get("/", (req, res) => {
+  res.send("Welcome to Google AI API for Google Play Store Reviews");
+});
+
+app.post("/analyse", async (req, res) => {
   const userInput = req.body.userInput;
 
   try {
     const response = await runChat(userInput);
-    if (response) {      
+    if (response) {
       console.log(response);
-      res.status(200).send({ data : response });
+      res.status(200).send({ data: response });
     }
   } catch (error) {
-    res
-      .status(500)
-      .send({
-        error: "An error occurred while processing your request.", error,
-      });
+    res.status(500).send({
+      error: "An error occurred while processing your request.",
+      error,
+    });
   }
 });
 
