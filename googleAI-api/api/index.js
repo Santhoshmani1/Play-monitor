@@ -3,7 +3,7 @@ import {
   HarmCategory,
   HarmBlockThreshold,
 } from "@google/generative-ai";
-import express, { text } from "express";
+import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 
