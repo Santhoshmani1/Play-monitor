@@ -50,10 +50,11 @@ async function runChat(userInput) {
     role: "model",
     parts: [
       {
-        text: `Divide the google play store mobile application reviews into the following prescribed format ->  
-        - # **Issue category** - design/bug-fix/feature-request
-        -  Title : ** ## Issue - Title ** Appropriate Title for the issue
-        - ID : id of the review
+        text: `Divide the google play store mobile application reviews into fields->  
+        Category : design/bug-fix/feature-request
+        Title : Appropriate Title for the issue
+        Return the json format with category,title fields. 
+        Just the two fields and no other data is required
     `,
       },
     ],
