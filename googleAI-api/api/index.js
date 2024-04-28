@@ -82,14 +82,12 @@ app.post("/analyse", async (req, res) => {
   try {
     const response = await runChat(userInput);
     if (response) {
-      console.log(response);
       res.status(200).send({ data: response });
     }
   } catch (error) {
+    console.log("Too many requests", error);
     res.status(500).send({
-      error: "An error occurred while processing your request.",
-      error,
-    });
+      error: error, message: "Too many requests, please try again",});
   }
 });
 
