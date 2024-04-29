@@ -58,3 +58,20 @@ export function Mail() {
     )
 }
 
+export function Bolt({ style }) {
+    return (
+        <span className="material-icons" style={style}>bolt</span>
+    )
+}
+
+export function Explore({ style }) {
+    return (
+        <span className="material-icons" style={style}>travel_explore</span>
+    )
+}
+
+export function Insights({ style }) {
+    return (
+        <span className="material-icons" style={style}>query_stats</span>
+    )
+}
