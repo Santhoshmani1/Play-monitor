@@ -1,24 +1,16 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { SearchBar } from '../shared/materialIcons';
 import SearchRecommendations from '../Recommendations/SearchRecommedations';
 
 const EntrySearch = () => {
     const [searchTerm, setSearchTerm] = useState("");
-    const [recommendationsVisibility, setRecommendationsVisibility] = useState(false);
 
     return (
         <>
-            <div className="search-info font-sans">
-                <h2 className='text-center lg:text-3xl text-xl p-5 text-yellow-400 font-sans font-bold'>
-                    Analyse your favourite applications on Google play store
-                </h2>
-            </div>
-
-            <div className="searchbar flex justify-center items-center">
-                <input type="text" placeholder='Search Apps & Games' className='py-2 w-3/5 lg:w-2/5 px-2 lg:text-2xl md:text-xl text-lg  focus:border-white text-gray-700 rounded-xl' onChange={(e) => {
+            <div className="flex items-center justify-center py-4 searchbar">
+                <input type="text" placeholder='Search Apps & Games' className='w-3/5 px-2 py-3 text-gray-700 border-2 border-black rounded-3xl lg:w-2/5 lg:text-lg md:text-xl focus:border-gray-950' onChange={(e) => {
                     setSearchTerm(e.target.value)
                 }} onFocusCapture={() => {
-                    setRecommendationsVisibility(true)
                 }}
                     autoFocus={true}
                 />
