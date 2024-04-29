@@ -6,6 +6,9 @@ export default {
       fontFamily: {
         sans: ["Open Sans", "Ariel", "sans-serif"],
       },
+      animation: {
+        pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 1",
+      }
     },
   },
   plugins: [],
