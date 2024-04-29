@@ -1,36 +1,39 @@
-export function SearchBar() {
+// React components for Google material icons
+// reference : https://developers.google.com/fonts/docs/material_symbols
+
+export function SearchBar({ style }) {
     return (
-        <span className="material-icons font-semibold">search</span>
+        <span className="font-semibold material-icons" style={style}>search</span>
     )
 }
 
 export function ArrowOutward() {
     return (
-        <span className="material-icons font-semibold">arrow_outward</span>
+        <span className="font-semibold material-icons">arrow_outward</span>
     )
 }
 
 export function PlayIcon({ style }) {
     return (
-        <span className="material-icons font-semibold" style={style}>play_arrow</span>
+        <span className="font-semibold material-icons" style={style}>play_arrow</span>
     )
 }
 
 export function StarIcon() {
     return (
-        <span className="material-icons font-semibold">star</span>
+        <span className="font-semibold material-icons">star</span>
     )
 }
 
 export function Download() {
     return (
-        <span className="material-icons font-semibold">download</span>
+        <span className="font-semibold material-icons">download</span>
     )
 }
 
 export function Person() {
     return (
-        <span className="material-icons font-semibold">person</span>
+        <span className="font-semibold material-icons">person</span>
     )
 }
 
@@ -40,7 +43,7 @@ export function Shield() {
     )
 }
 
-export function Location(){
+export function Location() {
     return (
         <span className="material-icons">location_on</span>
     )
@@ -58,3 +61,20 @@ export function Mail() {
     )
 }
 
+export function Bolt({ style }) {
+    return (
+        <span className="material-icons" style={style}>bolt</span>
+    )
+}
+
+export function Explore({ style }) {
+    return (
+        <span className="material-icons" style={style}>travel_explore</span>
+    )
+}
+
+export function Insights({ style }) {
+    return (
+        <span className="material-icons" style={style}>query_stats</span>
+    )
+}
