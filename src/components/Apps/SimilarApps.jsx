@@ -10,12 +10,12 @@ const SimilarApps = ({ apps }) => {
 
     return (
         <>
-            <h2 className='lg:text-4xl text-2xl font-bold p-4'>Similar Apps</h2>
-            <div className='flex overflow-x-scroll justify-center items-center'>
+            <h2 className='px-16 py-4 text-2xl font-bold lg:text-4xl '>Similar Apps</h2>
+            <div className='flex items-center justify-center overflow-x-scroll pl-80 sm:pl-20 bg-slate-100'>
                 {apps && apps.map((app, index) => (
-                    <button onClick={() => openApp(app.title)} key={index} className='flex justify-evenly items-center flex-col p-2 m-2 bg-zinc-50'>
+                    <button onClick={() => openApp(app.title)} key={index} className='flex flex-col items-center p-2 m-2 justify-evenly'>
                         <img src={app.icon} alt={app.title} className='w-20 rounded-lg' />
-                        <h3 className='text-lg px-4'>{app.title}</h3>
+                        <h3 className='px-4 text-lg'>{app.title}</h3>
                     </button>
                 ))}
             </div>

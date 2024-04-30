@@ -1,11 +1,17 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { Download, Mail, Shield, Location, StarIcon, Website, Person } from '../shared/materialIcons';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const AppDetails = ({ details }) => {
 
-    const { appId, title, description, summary, scoreText, installs, contentRating, screenshots, icon, updated, recentChanges, developer, developerEmail, developerWebsite, developerAddress, histogram, privacyPolicy } = details;
+    const { appId, title, description, url, summary, scoreText, installs, contentRating, screenshots, icon, updated, recentChanges, developer, developerEmail, developerWebsite, developerAddress, histogram, privacyPolicy } = details;
     const navigate = useNavigate();
+    console.log(details?.histogram);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [details])
 
 
     // Function to navigate to the analyse page with the app id and title
@@ -53,7 +59,7 @@ const AppDetails = ({ details }) => {
     function getDownloads() {
         if (installs === undefined)
             return;
-        return (installs.replace(/,/g, "").replace("+", ""));
+        return (String(installs).replace(/,/g, "").replace("+", ""));
     }
 
     /**
@@ -84,7 +90,7 @@ const AppDetails = ({ details }) => {
         const histogramRepresentation = {};
 
         for (const key in histogram) {
-            histogramRepresentation[key] = (histogram[key] / getTotalReviews()) * 100;
+            histogramRepresentation[key] = (histogram[key] / getTotalReviews()) * totalPercentage;
         }
 
         return histogramRepresentation;
@@ -102,20 +108,21 @@ const AppDetails = ({ details }) => {
                     <div className='flex flex-col justify-start'>
                         <h2 className='p-2 text-xl font-bold lg:text-5xl'>{title}</h2>
                         <h3 className='p-2 text-lg text-slate-700 lg:text-3xl'>{developer}</h3>
-                        <div className='p-4 text-lg text-center lg:text-2xl'>{summary}</div>
-                        <div className="p-4 mx-auto cta">
-                            <button onClick={() => analyseApp(appId, title)} className='p-4 px-12 m-2 text-lg font-bold bg-blue-900 shadow-xl hover:bg-blue-500 text-gray-50 shadow-gray-800 hover:shadow-gray-600 rounded-2xl'>✨ Analyse App with Google AI ✨</button>
-                        </div>
+                        <div className='p-4 text-lg lg:text-2xl'>{summary}</div>
                     </div>
+                </div>
+                <div className="flex flex-col items-center justify-center p-4 cta md:flex-row">
+                    <button onClick={() => analyseApp(appId, title)} className='px-6 py-4 m-2 text-sm font-bold text-center bg-blue-600 shadow-xl py- lg:py-6 lg:px-16 hover:bg-blue-500 text-gray-50 rounded-2xl sm:text-lg'>✨ Analyse App with Google AI ✨</button>
+                    <Link to={url} className='py-4 m-2 text-sm font-bold text-center bg-green-600 shadow-xl px-9 py- lg:py-6 lg:px-16 text-gray-50 rounded-2xl hover:bg-green-500 sm:text-lg'>Download app from Play Store  </Link>
                 </div>
                 <div className='flex items-center w-full p-6 justify-evenly'>
                     <div className='flex flex-col items-center justify-center p-2'>
                         <span className='flex text-lg lg:text-2xl'> {scoreText} <StarIcon /></span>
-                        <span className='p-2 text-lg lg:text-2xl'>{getTotalReviewsString()} Reviews</span>
+                        <span className='p-2 text-lg lg:text-2xl'>{getTotalReviewsString()}  Reviews</span>
                     </div>
                     <div className='flex flex-col items-center justify-center p-2'>
                         <span className='flex items-center text-lg lg:text-2xl'>
-                            {(getDownloadsString())}  <Download />
+                            {(getDownloadsString())} + <Download />
                         </span>                        <span className='p-2 text-lg lg:text-2xl'>Downloads</span>
                     </div>
                     <div className='flex flex-col items-center justify-center p-2'>
@@ -153,15 +160,21 @@ const AppDetails = ({ details }) => {
         return (
             <>
                 <div className='latest-update'>
-                    <h2 className='p-4 text-2xl font-bold lg:text-4xl'>Latest Update</h2>
-                    <div className='p-4'>
-                        <h3 className='text-lg font-bold'>What&apos;s New</h3>
-                        <p className='text-lg text-gray-700'>{recentChanges}</p>
-                    </div>
-                    <div className='p-4'>
-                        <h3 className='text-lg font-bold'>Last Updated on</h3>
-                        <p className='text-lg text-gray-700'>{new Date(updated).toLocaleDateString()}</p>
-                    </div>
+                    {recentChanges && (
+                        <>
+                            <h2 className='p-4 text-2xl font-bold lg:text-4xl'>Latest Update</h2>
+                            <div className='p-4'>
+                                <h3 className='text-lg font-bold'>What&apos;s New</h3>
+                                <p className='text-lg text-gray-700'>{recentChanges}</p>
+                            </div>
+                        </>
+                    )}
+                    {updated && (
+                        <div className='p-4'>
+                            <h3 className='text-lg font-bold'>Last Updated on</h3>
+                            <p className='text-lg text-gray-700'>{new Date(updated).toLocaleDateString()}</p>
+                        </div>
+                    )}
                 </div>
             </>
         )
@@ -193,18 +206,20 @@ const AppDetails = ({ details }) => {
     function ReviewsHistogram() {
         return (
             <>
-                <h2 className='p-4 text-2xl font-bold lg:text-4xl'>App Reviews</h2>
+                <h2 className='px-4 py-6 text-2xl font-bold lg:text-4xl'>App Reviews</h2>
 
-                <div className='flex flex-col items-center justify-center w-full md:flex-row'>
-                    <div className='flex flex-col items-center text-4xl'>
-                        <div className='font-bold'>
-                            {scoreText} <StarIcon />
-                        </div>                        <div>
-                            {getTotalReviewsString()} Reviews
+                <div className="flex flex-col">
+                    <div className='flex flex-col items-center justify-center w-full md:flex-row'>
+                        <div className='flex flex-col items-center text-4xl'>
+                            <div className='font-bold'>
+                                {scoreText} <StarIcon />
+                            </div>                        <div>
+                                {getTotalReviewsString()} Reviews
+                            </div>
                         </div>
                     </div>
-
-                    <div className='lg:min-w-[800px]'>
+                    <div className='py-6'>
+                        {console.log(histogramRepresentation)}
                         {histogramRepresentation && Object.keys(histogramRepresentation).map(key => (
                             <HistogramBar
                                 key={key}
@@ -236,27 +251,33 @@ const AppDetails = ({ details }) => {
                             </a>
                         </div>
                         )}
-                        <div className="">
-                            <div className='p-2 font-black'>Support Email</div>
-                            <div className='px-2 text-lg'>
-                                <a className='flex items-center justify-start' href={"mailto:" + developerEmail}>
-                                    <Mail /> {developerEmail}</a>
+                        {developerEmail && (
+                            <div className="">
+                                <div className='p-2 font-black'>Support Email</div>
+                                <div className='px-2 text-lg'>
+                                    <a className='flex items-center justify-start' href={"mailto:" + developerEmail}>
+                                        <Mail /> {developerEmail}</a>
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <div className='p-2 font-black'>Address</div>
-                            <div className="flex items-center justify-start px-2 text-lg"> <Location />{developerAddress}</div>
-                        </div>
-                        <div className="privacy-policy">
-                            <div className="p-2 font-black">
-                                Privacy Policy
+                        )}
+                        {developerAddress && (
+                            <div>
+                                <div className='p-2 font-black'>Address</div>
+                                <div className="flex items-center justify-start px-2 text-lg"> <Location />{developerAddress}</div>
                             </div>
-                            <div className="px-2 text-lg">
-                                <a href={privacyPolicy} target='_blank' rel='noreferrer' className='flex items-center justify-start'>
-                                    <Shield />
-                                    {privacyPolicy}</a>
+                        )}
+                        {privacyPolicy && (
+                            <div className="privacy-policy">
+                                <div className="p-2 font-black">
+                                    Privacy Policy
+                                </div>
+                                <div className="px-2 text-lg">
+                                    <a href={privacyPolicy} target='_blank' rel='noreferrer' className='flex items-center justify-start'>
+                                        <Shield />
+                                        {privacyPolicy}</a>
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </>
