@@ -35,24 +35,24 @@ const SearchRecommendations = ({ searchTerm }) => {
         };
     }, [selectedSuggestionIndex, suggestions.length]);
 
-   // Render the search suggestions with the selected suggestion highlighted 
-   // based on the selectedSuggestionIndex state value 
+    // Render the search suggestions with the selected suggestion highlighted
+    // based on the selectedSuggestionIndex state value 
     return (
-        <div className='flex justify-center items-center flex-col ml-6 mt-1 font-sans'>
+        <div className='flex flex-col items-center justify-center mt-0.5 ml-6 font-sans'>
             {suggestions.map((suggestion, index) => (
-                    <Link to={"/apps/"+suggestion} key={index} className={`py-2 w-3/5 lg:w-2/5 mr-14 bg-zinc-50 flex text-lg items-center justify-between pr-4 ${index === selectedSuggestionIndex ? 'bg-zinc-200 text-blue-400 font-bold border-none' : ''}`}>
-                        <div className='flex'>
-                            <div className='px-2'>
-                                <SearchBar />
-                            </div>
-                            <div>
-                                {suggestion}
-                            </div>
+                <Link to={"/apps/" + suggestion} key={index} className={`py-2 w-3/5 lg:w-2/5 mr-14 bg-zinc-50 flex text-lg items-center justify-between pr-4 ${index === selectedSuggestionIndex ? 'bg-zinc-200 text-blue-400 font-bold border-none' : ''}`}>
+                    <div className='flex'>
+                        <div className='px-2'>
+                            <SearchBar />
                         </div>
                         <div>
-                            <ArrowOutward />
+                            {suggestion}
                         </div>
-                    </Link>
+                    </div>
+                    <div>
+                        <ArrowOutward />
+                    </div>
+                </Link>
             ))}
         </div>
     );
