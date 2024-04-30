@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { SearchBar, ArrowOutward } from '../shared/materialIcons';
 import { Link } from 'react-router-dom';
 
 const SearchRecommendations = ({ searchTerm }) => {
-    const [suggestions, setSuggestions] = useState(["whatsapp"]);
+    const [suggestions, setSuggestions] = useState(["Gmail", "Drive", "Chrome", "Maps"]);
     const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(0);
 
     // Fetch search suggestions from the API and update the state with the suggestions
