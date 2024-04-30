@@ -9,7 +9,7 @@ const EntrySearch = () => {
     return (
         <>
             <div className="flex items-center justify-center py-4 searchbar">
-                <input type="text" placeholder='Search Apps & Games' className='w-3/5 p-3 text-gray-700 border-2 border-black rounded-3xl lg:w-2/5 lg:text-lg md:text-xl focus:border-blue-950' onChange={(e) => {
+                <input type="text" placeholder='Search Apps & Games' className='w-3/4 p-3 text-gray-700 border-2 border-black md:w-3/4 rounded-3xl lg:w-2/5 lg:text-lg md:text-xl focus:border-blue-950' onChange={(e) => {
                     setSearchTerm(e.target.value)
                 }}
                     autoFocus={true}
