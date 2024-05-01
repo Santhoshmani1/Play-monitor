@@ -79,7 +79,22 @@ export function Insights({ style }) {
     )
 }
 
+export function BugReport({ style }) {
+    return (
+        <span className="material-icons" style={style}>bug_report</span>
+    )
+}
+export function AddCircle({ style }) {
+    return (
+        <span className="material-icons" style={style}>add_circle</span>
+    )
+}
 
+export function Mobile({ style }) {
+    return (
+        <span className="material-icons" style={style}>smartphone</span>
+    )
+}
 
 export function Filter() {
     return (

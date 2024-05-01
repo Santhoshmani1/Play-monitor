@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import Header from '../components/shared/Header';
 import { StarIcon } from '../components/shared/materialIcons';
+import AppInsights from '../components/Analysis/Insights'
 import { Link } from 'react-router-dom';
 
 const Analyser = () => {
@@ -170,6 +171,7 @@ const Analyser = () => {
       <Header />
       <AppDetails />
       <div className="container p-4 mx-auto">
+        <AppInsights appInsights={insights} />
         <div className="reviews-container">
           <h2 className='p-4 text-2xl font-bold lg:text-4xl'>Reviews</h2>
           <ReviewsFilter />
