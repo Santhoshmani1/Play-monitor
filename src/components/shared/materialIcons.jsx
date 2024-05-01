@@ -78,3 +78,11 @@ export function Insights({ style }) {
         <span className="material-icons" style={style}>query_stats</span>
     )
 }
+
+
+
+export function Filter() {
+    return (
+        <span className="material-icons">filter_list</span>
+    )
+}
