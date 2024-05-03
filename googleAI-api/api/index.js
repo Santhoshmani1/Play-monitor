@@ -6,6 +6,7 @@ import {
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import compression from "compression";
 
 dotenv.config();
 const app = express();
@@ -15,6 +16,7 @@ const API_KEY = process.env.GOOGLEAI_API_KEY;
 
 app.use(express.json());
 app.use(cors());
+app.use(compression())
 
 async function runChat(userInput) {
   const genAI = new GoogleGenerativeAI(API_KEY);
